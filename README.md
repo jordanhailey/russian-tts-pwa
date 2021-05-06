@@ -1,13 +1,5 @@
 # A Russian Text-To-Speech App
-
-## Roadmap
-- [ ] 🗣️ Working text to speech translation 
-- [ ] 💅 Make it beautiful 
-- [ ] 🤖 Enable offline usage (make it a PWA)
-- [ ] ⏯️ Better control over starting / stopping TTS
-- [ ] ***e/ë*** (??) Stress Marking (I still need help understanding proper intonation to figure this one out) 
-- [ ] 👂 (??) Rooglish (depends on stress marking)
-- [ ] 🌐 (??) Tranlation (depending on what OSS libraries are available, or I may try using serverless functions to solve for this)
+> See [1.0 Roadmap](https://github.com/jordanhailey/russian-tts-pwa/milestone/1), and [issues in development](https://github.com/jordanhailey/russian-tts-pwa/issues?q=is%3Aissue+is%3Aopen+label%3Aroadmap)
 
 ## Developing
 Once you've cloned this project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
