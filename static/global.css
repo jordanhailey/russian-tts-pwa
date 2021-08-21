@@ -1,0 +1,12 @@
+:root {
+	--primary-color: hsl( 0 0% 0% / 1 );
+	--primary-color-complement: hsl( 0 100% 100% / 1 );
+}
+
+html {
+	font-family: 'Georgia';
+}
+
+html *, html *::before, html *::after {
+	box-sizing: border-box;
+}

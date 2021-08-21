@@ -9,6 +9,16 @@
   $: selectedVoice = null;
   $: utterance = null;
 
+  $: {
+      if (utterance) {
+        utterance.voice = voices[selectedVoice];
+        utterance.text = input;
+        utterance.rate = rate;
+        utterance.pitch = pitch;
+        utterance.volume = 1;
+      }
+    }
+  
   onMount(()=>{
     initTTS();
   })
@@ -20,6 +30,12 @@
     populateVoiceList();
     if (speechSynthesis.onvoiceschanged !== undefined) {
       speechSynthesis.onvoiceschanged = populateVoiceList;
+    }
+    tick();  
+    utterance = new SpeechSynthesisUtterance(input);
+    utterance.onpause = function pausedTTS(e) {
+      const char = e.utterance.text.charAt(e.charIndex);
+      console.log(`TTS paused at character ${e.charIndex}/${e.utterance.text.length}, which is ${char}.`);
     }
   }
 
@@ -34,19 +50,16 @@
   }
 
   function playTTS(e){
-    tick();
-    utterance = new SpeechSynthesisUtterance(input);
-    utterance.voice = voices[selectedVoice];
-    utterance.rate = rate;
-    utterance.pitch = pitch;
-    utterance.volume = 1;
-    utterance.onpause = function pauseTTS(e) {
-      const char = e.utterance.text.charAt(e.charIndex);
-      console.warn(`TTS paused at character ${e.charIndex}/${e.utterance.text.length}, which is ${char}.`);
-    }
     console.log({synth,utterance});
     synth.speak(utterance);
   }
+
+    function pauseTTS(e){
+      speechSynthesis.pause();
+      console.log(speechSynthesis);
+      debugger;
+  } 
+
 </script>
 
 <h1>Russian Text-To-Speech</h1>
@@ -71,6 +84,7 @@
     </select>
     <input type="submit" value="play"/>
   </form>
+  <button on:click={pauseTTS}>pause</button>
 </div>
 <!-- 
   woman 1 = rue-local 
